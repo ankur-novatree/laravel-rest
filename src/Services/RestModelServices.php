@@ -31,8 +31,9 @@ class  RestModelServices{
         }
 
     }
-    public function showById(){
+    public function showById($request){
         try{
+            $this->request =$request;
             $modelSlug =$this->request->segment(4);
             return $this->model->findOrFail($modelSlug)->toJson();
         }
@@ -61,21 +62,23 @@ class  RestModelServices{
         try{
             $this->request =$request;
             $slug =$this->request->segment(4);
+            $requestArray = $this->request->all();
             $modelAttr =$this->model->find($slug);
-            foreach ($modelAttr as $key => $attr){
-                $this->model->$attr = $this->request->$attr;
+            foreach ($requestArray as $attr => $value){
+                $modelAttr->$attr = $value;
             }
 
-            $this->model->update();
-            return 'Record created Successfully';
+            $modelAttr->update();
+            return 'Record Updated Successfully';
         }
         catch (\Exception $e){
             return  $e->getMessage();
         }
     }
-    public function deleteRecord(){
+    public function deleteRecord($request){
 
         try{
+            $this->request =$request;
             $modelSlug =$this->request->segment(4);
             $model =$this->model->findOrFail($modelSlug);
             $model->delete();

@@ -1,25 +1,27 @@
 <?php
 
 namespace Novatree\RestModel\Controllers;
+
 use App\Http\Controllers\Controller;
 use Novatree\RestModel\Facades\RestFacade as Rest;
 use Illuminate\Http\Request;
+
 class RestModelController extends Controller
 {
- protected $restModelServices;
-    public  function __construct()
-            {
-                try
-                {
-                $modelName ='App\\'.ucwords(Request()->segment(3));
-                $model = new $modelName();
-                Rest::useModel($model);
-             }
-            catch (\Exception $e){
-                $e->getMessage();
-            }
+    protected $restModelServices;
 
-            }
+    public function __construct()
+    {
+        try {
+            $modelName = Request()->segment(3);
+            $modelName = 'App\\' . $modelName;
+            $model = new $modelName();
+            Rest::useModel($model);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+    }
 
 
     /**
@@ -29,7 +31,7 @@ class RestModelController extends Controller
      */
     public function all()
     {
-        $val =Rest::getAll();
+        $val = Rest::getAll();
         return $val;
 
     }
@@ -41,52 +43,53 @@ class RestModelController extends Controller
      */
     public function create(Request $request)
     {
-      $response = Rest::createRecord($request);
-    return $response;
+        $response = Rest::createRecord($request);
+        return $response;
     }
 
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
 
-        $record = Rest::showById();
+        $record = Rest::showById($request);
         return $record;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        Rest::updateRecord($request);
+        $response =Rest::updateRecord($request);
+    return $response;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function delete()
+    public function delete(Request $request)
     {
-        $response =Rest::deleteRecord();
+        $response = Rest::deleteRecord($request);
         return $response;
     }
 }

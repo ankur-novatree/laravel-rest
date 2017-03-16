@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class RestModelController extends Controller
 {
-    protected $restModelServices;
+
 
     public function __construct()
     {
         try {
-            $modelName = Request()->segment(3);
+            $modelName = ucfirst(Request()->segment(3));
             $modelName = 'App\\' . $modelName;
             $model = new $modelName();
             Rest::useModel($model);

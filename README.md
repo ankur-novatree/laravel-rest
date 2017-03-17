@@ -3,9 +3,9 @@ Laravel-RestModel
 What is RestModel ? It is a laravel based package that can expose api for any model
 provided. Its easy !
 
-                 This package is powered by
+                                     This package is powered by
 
-[![](http://www.novatree.com/sites/all/themes/novatree/logo.png)](https://nodesource.com/products/nsolid)
+[![](http://www.novatree.com/sites/all/themes/novatree/logo.png |height=250)](https://nodesource.com/products/nsolid)
 
 
 Functionality

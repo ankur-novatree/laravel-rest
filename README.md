@@ -5,7 +5,7 @@ provided. Its easy !
 
                                      This package is powered by
 
-[![](http://www.novatree.com/sites/all/themes/novatree/logo.png |height=250)](https://nodesource.com/products/nsolid)
+[![](http://www.novatree.com/sites/all/themes/novatree/logo.png)](https://nodesource.com/products/nsolid)
 
 
 Functionality

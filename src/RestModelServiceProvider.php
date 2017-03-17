@@ -20,7 +20,8 @@ class RestModelServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Register the RestModelServices class with the restModel name.
+     * RestFacade will get the instance by this name.
      *
      * @return void
      */

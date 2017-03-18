@@ -1,5 +1,5 @@
 <?php
-namespace Novatree\RestModel\Facades;
+namespace Novatree\Rest\Facades;
 use Illuminate\Support\Facades\Facade;
 
 
@@ -19,7 +19,7 @@ class  RestFacade extends Facade
      */
 
 
-    protected static function getFacadeAccessor() { return 'restModel'; }
+    protected static function getFacadeAccessor() { return 'rest'; }
 
 
 }

@@ -1,18 +1,31 @@
 {
-    "name": "novatree/restmodel",
+    "name": "novatree/rest",
     "type": "library",
+    "description" : "Available rest api crud operations for every model",
     "license": "MIT",
+    "keywords": ["rest", "laravel","rest service","rest api laravel","laravel rest service"],
     "authors": [
         {
             "name": "tejomayonline",
             "email": "tejomaysaha@outlook.com"
+        },
+        {
+            "name" : "Monojit Halder",
+            "email" : "monojithalder@hotmail.com"
+        },
+        {
+            "name" : "Prakash Bharti",
+            "email" : "prakashbharti786@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "~5.0",
+        "illuminate/contracts": "~5.0"
+    },
     "autoload":{
         "psr-4": {
-            "Novatree\\RestModel\\": "src/"
+            "Novatree\\Rest\\": "src/"
         }
     }
 }

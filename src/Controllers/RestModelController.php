@@ -1,9 +1,9 @@
 <?php
 
-namespace Novatree\RestModel\Controllers;
+namespace Novatree\Rest\Controllers;
 
 use App\Http\Controllers\Controller;
-use Novatree\RestModel\Facades\RestFacade as Rest;
+use Novatree\Rest\Facades\RestFacade as Rest;
 use Illuminate\Http\Request;
 
 
@@ -25,7 +25,7 @@ class RestModelController extends Controller
     public function __construct()
     {
         try {
-            $modelName = ucfirst(Request()->segment(3));
+            $modelName = ucfirst(Request()->segment(2));
             $modelName = 'App\\' . $modelName;
             $model = new $modelName();
             Rest::useModel($model);

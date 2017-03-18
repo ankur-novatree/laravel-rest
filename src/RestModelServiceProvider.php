@@ -1,10 +1,10 @@
 <?php
 
-namespace Novatree\RestModel;
+namespace Novatree\Rest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Novatree\RestModel\Services\RestModelServices;
+use Novatree\Rest\Services\RestModelServices;
 
 class RestModelServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class RestModelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('restModel',function(){
+        $this->app->singleton('rest',function(){
            return new RestModelServices(new Request());
         });
     }

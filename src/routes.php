@@ -17,21 +17,11 @@
 
 
 Route::group(['prefix' =>'rest','namespace'=>
-    'Novatree\RestModel\Controllers']
+    'Novatree\Rest\Controllers']
 ,function (){
-        Route::get('all/{model}','RestModelController@all');
-        Route::get('find/{model}/{id}','RestModelController@show');
-        Route::put('update/{model}/{id}','RestModelController@update');
-        Route::post('create/{model}','RestModelController@create');
-        Route::delete('delete/{model}/{id}','RestModelController@delete');
-
+        Route::get('{model}','RestModelController@all');
+        Route::get('{model}/{id}','RestModelController@show');
+        Route::put('{model}/{id}','RestModelController@update');
+        Route::post('{model}','RestModelController@create');
+        Route::delete('{model}/{id}','RestModelController@delete');
     });
-
-
-
-
-
-
-
-
-?>

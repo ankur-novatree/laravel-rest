@@ -1,6 +1,6 @@
 <?php
 
-namespace Novatree\RestModel\Services;
+namespace Novatree\Rest\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;

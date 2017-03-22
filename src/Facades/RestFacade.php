@@ -1,9 +1,9 @@
 <?php
 namespace Novatree\Rest\Facades;
+
 use Illuminate\Support\Facades\Facade;
 
-
-class  RestFacade extends Facade
+class RestFacade extends Facade
 {
     /**
      *  RestFacade binds RestModelServices class with Laravel Service Container.
@@ -17,13 +17,8 @@ class  RestFacade extends Facade
      *
      * @return String
      */
-
-
-    protected static function getFacadeAccessor() { return 'rest'; }
-
-
+    protected static function getFacadeAccessor()
+    {
+        return 'rest';
+    }
 }
-
-
-
-?>

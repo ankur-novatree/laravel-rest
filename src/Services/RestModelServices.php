@@ -31,17 +31,32 @@ use Illuminate\Http\Request;
  *
  * @return String
  */
-
-class  RestModelServices{
-
+class RestModelServices
+{
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
     protected $model;
+
+    /**
+     * @var \Illuminate\Http\Request
+     */
     protected $request;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
     public function __construct(Request $request)
     {
-    $this->request =$request;
+        $this->request = $request;
     }
-    public function useModel(Model $model){
-        $this->model =$model;
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     */
+    public function useModel(Model $model)
+    {
+        $this->model = $model;
     }
 
     /**
@@ -49,68 +64,93 @@ class  RestModelServices{
      */
     public function getAll()
     {
-        try{
+        try {
             return $this->model->all()->toJson();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
-    public function showById($request){
-        try{
-            $this->request =$request;
-            $modelSlug =$this->request->segment(4);
+
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function showById(Request $request)
+    {
+        try {
+            $this->request = $request;
+            $modelSlug = $this->request->segment(4);
+
             return $this->model->findOrFail($modelSlug)->toJson();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
-
     }
-    public  function createRecord($request){
-        try{
-            $this->request =$request;
-            $modelAttr =$this->model->getFillable();
-            foreach ($modelAttr as $key => $attr){
+
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function createRecord(Request $request)
+    {
+        try {
+            $this->request = $request;
+            $modelAttr = $this->model->getFillable();
+
+            foreach ($modelAttr as $key => $attr) {
                 $this->model->$attr = $this->request->$attr;
             }
 
             $this->model->save();
+
             return 'Record created Successfully';
-        }
-        catch (\Exception $e){
-          return  $e->getMessage();
+        } catch (\Exception $e) {
+            return  $e->getMessage();
         }
     }
 
-    public  function updateRecord($request){
-        try{
-            $this->request =$request;
-            $slug =$this->request->segment(4);
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function updateRecord(Request $request)
+    {
+        try {
+            $this->request = $request;
+            $slug = $this->request->segment(4);
             $requestArray = $this->request->all();
-            $modelAttr =$this->model->find($slug);
-            foreach ($requestArray as $attr => $value){
+            $modelAttr = $this->model->find($slug);
+
+            foreach ($requestArray as $attr => $value) {
                 $modelAttr->$attr = $value;
             }
 
             $modelAttr->update();
+
             return 'Record Updated Successfully';
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return  $e->getMessage();
         }
     }
-    public function deleteRecord($request){
 
-        try{
-            $this->request =$request;
-            $modelSlug =$this->request->segment(4);
-            $model =$this->model->findOrFail($modelSlug);
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    public function deleteRecord(Request $request)
+    {
+        try {
+            $this->request = $request;
+            $modelSlug = $this->request->segment(4);
+            $model = $this->model->findOrFail($modelSlug);
             $model->delete();
+
             return 'record deleted Successfully';
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
     }

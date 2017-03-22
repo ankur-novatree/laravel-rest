@@ -15,13 +15,11 @@
  *
  */
 
-
 Route::group(['prefix' =>'rest','namespace'=>
-    'Novatree\Rest\Controllers']
-,function (){
-        Route::get('{model}','RestModelController@all');
-        Route::get('{model}/{id}','RestModelController@show');
-        Route::put('{model}/{id}','RestModelController@update');
-        Route::post('{model}','RestModelController@create');
-        Route::delete('{model}/{id}','RestModelController@delete');
+    'Novatree\Rest\Controllers'], function () {
+        Route::get('{model}', 'RestModelController@all');
+        Route::get('{model}/{id}', 'RestModelController@show');
+        Route::put('{model}/{id}', 'RestModelController@update');
+        Route::post('{model}', 'RestModelController@create');
+        Route::delete('{model}/{id}', 'RestModelController@delete');
     });

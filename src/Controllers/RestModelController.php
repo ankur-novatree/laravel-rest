@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use Novatree\Rest\Facades\RestFacade as Rest;
 use Illuminate\Http\Request;
 
-
 class RestModelController extends Controller
 {
-
     /**
      * The application's Constructor that initializes the model name from url.
      * Then it will create a model of it (the model should be inside the  App directory).
@@ -21,7 +19,6 @@ class RestModelController extends Controller
      *
      * @Facade Rest
      */
-
     public function __construct()
     {
         try {
@@ -32,9 +29,7 @@ class RestModelController extends Controller
         } catch (\Exception $e) {
             $e->getMessage();
         }
-
     }
-
 
     /**
      * Display a listing of the resource.
@@ -50,8 +45,8 @@ class RestModelController extends Controller
     public function all()
     {
         $val = Rest::getAll();
-        return $val;
 
+        return $val;
     }
 
     /**
@@ -64,9 +59,9 @@ class RestModelController extends Controller
     public function create(Request $request)
     {
         $response = Rest::createRecord($request);
+
         return $response;
     }
-
 
     /**
      * Display the specified resource.
@@ -80,11 +75,10 @@ class RestModelController extends Controller
      */
     public function show(Request $request)
     {
-
         $record = Rest::showById($request);
+
         return $record;
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -99,7 +93,8 @@ class RestModelController extends Controller
     public function update(Request $request)
     {
         $response =Rest::updateRecord($request);
-    return $response;
+
+        return $response;
     }
 
     /**
@@ -114,6 +109,7 @@ class RestModelController extends Controller
     public function delete(Request $request)
     {
         $response = Rest::deleteRecord($request);
+
         return $response;
     }
 }

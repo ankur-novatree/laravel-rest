@@ -15,8 +15,7 @@ class RestModelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       include __DIR__.'/routes.php';
-        //
+        include __DIR__.'/routes.php';
     }
 
     /**
@@ -27,8 +26,8 @@ class RestModelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('rest',function(){
-           return new RestModelServices(new Request());
+        $this->app->singleton('rest', function () {
+            return new RestModelServices(new Request());
         });
     }
 }

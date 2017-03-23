@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Facade;
 class RestFacade extends Facade
 {
     /**
-     *  RestFacade binds RestModelServices class with Laravel Service Container.
+     *  RestFacade binds RestServices class with Laravel Service Container.
      *
-     *  the getFacadeAccessor() method returns the named string of the RestModelServices class.
+     *  the getFacadeAccessor() method returns the named string of the RestServices class.
      *
-     *  Actually the binding with restModel name has been implemented in
-     *  RestModelServiceProvider class.
+     *  Actually the binding with rest name has been implemented in
+     *  RestServiceProvider class.
      *
      *
      *

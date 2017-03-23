@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Novatree\Rest\Facades\RestFacade as Rest;
 use Illuminate\Http\Request;
 
-class RestModelController extends Controller
+class RestController extends Controller
 {
     /**
      * The application's Constructor that initializes the model name from url.
      * Then it will create a model of it (the model should be inside the  App directory).
-     * Then it will call the useModel method of RestModel Service using Rest Facade.
+     * Then it will call the useModel method of Rest Service using Rest Facade.
      *
      *
      * It is surrounded with try catch block. If the model is not found in App\ directory

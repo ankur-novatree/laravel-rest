@@ -31,7 +31,7 @@ use Illuminate\Http\Request;
  *
  * @return String
  */
-class RestModelServices
+class RestServices
 {
     /**
      * @var \Illuminate\Database\Eloquent\Model

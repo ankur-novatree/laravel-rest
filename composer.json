@@ -1,7 +1,7 @@
 {
     "name": "novatree/rest",
     "type": "library",
-    "description" : "Available rest api crud operations for every model",
+    "description" : "enable restful routes and services with existing Eloquent Models",
     "license": "MIT",
     "keywords": ["rest", "laravel","rest service","rest api laravel","laravel rest service"],
     "authors": [

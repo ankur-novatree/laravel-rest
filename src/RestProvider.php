@@ -2,11 +2,9 @@
 
 namespace Novatree\Rest;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Novatree\Rest\Services\RestServices;
 
-class RestServiceProvider extends ServiceProvider
+class RestProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -26,8 +24,5 @@ class RestServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('rest', function () {
-            return new RestServices(new Request());
-        });
     }
 }

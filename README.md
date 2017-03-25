@@ -3,33 +3,35 @@ Laravel-RestModel
 What is RestModel ? It is a laravel based package that can expose api for any model
 provided. Its easy !
 
-                                     This package is powered by
+                  This package is powered by
 
-[![](http://www.novatree.com/sites/all/themes/novatree/logo.png)](https://nodesource.com/products/nsolid)
+<img src="http://www.novatree.com/sites/all/themes/novatree/logo.png" width="auto" height="150px">
 
 
 Functionality
--------------
+------------------
 
 > - this packages extends your models CRUD based functionality.
-> - it enables restful urls/routes.
-> - the model objects will be created dynamically uses laravel native methods.
-> - it can be usable for native/hybrid mobile app or any web app development as a backend.
-> - it is so easy just hit the url and get required respose !
+> - it provides you restful functionality  with your existing methods without righting single line of code.
+> - e.g. if you have a User model then,
+    -   you can get all results by accessing this url [your-project-name]/User   **(GET)**
+    - you can get a particular record by accessing this url [your-project-name]/User/id   **(GET)**
+    - you can create a record with providing all necessary model attributes hitting url [your-project-name]/User   **(POST)**
+    - you can update a record passing id and all necessary model attributes hitting url [your-project-name]/User/id   **(PUT)**
+    - you can delete a record passing id hitting url [your-project-name]/User/id  **(DELETE)**
 
 #### <i class="icon-file"></i> Installation
->- run the command <strong>composer require novatree/restmodel</strong> from console after traversing to your laravel project directory .Then follow the steps bellow.
+-------------------------------------------
+>- to install the package please type the command <strong>composer require novatree/restmodel</strong> from console in your laravel project directory .Then follow the steps bellow ....
 >- go to your laravel application root directory.
->- there is a file with the  LaravelProject\Config\app.php.
+>- there is a file with the  YourLaravelProject\Config\app.php.
 >- in this file there is an array of contents called providers.
->- paste <i class="icon-paste"> <strong> Novatree\RestModel\RestModelServiceProvider::class,</strong> in <strong>Project\config\app.php</strong> file providers array.
->- paste <i class="icon-paste"> <strong> 'Rest' => Novatree\RestModel\Facades\RestFacade::class,</strong> in <strong>Project\config\app.php</strong> file aliases array.
->- now from your console type composer dump-autoload or
-  > composer dump-autoload -o for autloading composer vendors
-  > and classes.
+>- paste `Novatree\Rest\RestProvider::class` in `YourLaravelProject\config\app.php` file providers array.
+>- now from your console type `composer dump-autoload` or
+  > `composer dump-autoload -o` for autloading composer vendor and classes.
 >- its all set .
->- If you fased any problem regarding this package feel free to mail me
-> <i class="icon-mail"></i> tejomay@novatree.com
-
+>- If you faced any problem regarding this package feel free to mail me
+> <i class="icon-mail"></i> tejomay@novatree.com /
+><i class="icon-mail"></i> tejomaysaha@outlook.com
 
 

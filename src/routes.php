@@ -1,4 +1,8 @@
 <?php
+namespace  Novatree\Rest;
+
+use Illuminate\Support\Facades\Route;
+
 /**
  *  Using Laravel Route Facade  here the all routes has been grouped with prefix with rest
  *  and the namespace Novatree\Rest\Controllers.
@@ -17,7 +21,7 @@
 
 Route::group(['prefix' =>'rest','namespace'=>
     'Novatree\Rest\Controllers'], function () {
-        Route::get('{model}', 'RestController@all');
+        Route::get('{model}', 'RestController@allRecords');
         Route::get('{model}/{id}', 'RestController@show');
         Route::put('{model}/{id}', 'RestController@update');
         Route::post('{model}', 'RestController@create');

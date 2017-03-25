@@ -3,7 +3,8 @@
 namespace Novatree\Rest\Controllers;
 
 use App\Http\Controllers\Controller;
-use Novatree\Rest\Facades\RestFacade as Rest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class RestController extends Controller
@@ -17,17 +18,17 @@ class RestController extends Controller
      * It is surrounded with try catch block. If the model is not found in App\ directory
      * an exception will be thrown.
      *
-     * @Facade Rest
+     *
      */
-    public function __construct()
+    protected $model;
+
+    public function __construct(Request $request)
     {
         try {
-            $modelName = ucfirst(Request()->segment(2));
-            $modelName = 'App\\' . $modelName;
-            $model = new $modelName();
-            Rest::useModel($model);
-        } catch (\Exception $e) {
-            $e->getMessage();
+            $model = 'App\\' . $request->segment(2);
+            $this->model = new $model();
+        } catch (\Exception $exception) {
+            $exception->getMessage();
         }
     }
 
@@ -39,14 +40,16 @@ class RestController extends Controller
      *
      *
      * @call   getAll()
-     *
+     * @return  response
      * Returns Json String
      */
-    public function all()
+    public function allRecords()
     {
-        $val = Rest::getAll();
-
-        return $val;
+        try {
+            return $this->model->all()->toJson();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -58,9 +61,18 @@ class RestController extends Controller
      */
     public function create(Request $request)
     {
-        $response = Rest::createRecord($request);
-
-        return $response;
+        try {
+            $attributes = $this->model->getFillable();
+            foreach ($attributes as $attribute) {
+                $this->model->$attribute = $request->$attribute;
+            }
+            $response = $this->model->save();
+            if ($response == true) {
+                return Response::HTTP_CREATED;
+            }
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -71,13 +83,16 @@ class RestController extends Controller
      *
      *
      * @param  Request $request
-     * Returns Json String
+     * @return  JsonResponse
      */
     public function show(Request $request)
     {
-        $record = Rest::showById($request);
-
-        return $record;
+        try {
+            $modelId = $request->segment(3);
+            return $this->model->findOrFail($modelId)->toJson();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -88,13 +103,24 @@ class RestController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      *
-     * Returns Json String
+     * @return  Response
      */
     public function update(Request $request)
     {
-        $response =Rest::updateRecord($request);
-
-        return $response;
+        try {
+            $model_id = $request->segment(3);
+            $attributes = $request->all();
+            $object = $this->model->find($model_id);
+            foreach ($attributes as $attribute => $value) {
+                $object->$attribute = $value;
+            }
+            $response = $object->update();
+            if ($response == true) {
+                return Response::HTTP_ACCEPTED;
+            }
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -104,12 +130,17 @@ class RestController extends Controller
      *  given as a parameter. It uses Rest Facade's deleteRecord to operate.
      *
      * @param  Request $request
-     * @return string
+     * @return response
      */
     public function delete(Request $request)
     {
-        $response = Rest::deleteRecord($request);
-
-        return $response;
+        try {
+            $modelId = $request->segment(3);
+            $model = $this->model->findOrFail($modelId);
+            $response = $model->delete();
+            return $response;
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }
